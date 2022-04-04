@@ -1,0 +1,28 @@
+{
+  "test-queries":[
+    {
+      "query-name": "test-query Condition testdata 1000",
+      "query": "Observation?code=55782-7",
+      "number-found": 0,
+      "time-taken": -1    
+    },
+    {
+      "query-name": "test-query Condition testdata 10000",
+      "query": "Observation?code=55782-7",
+      "number-found": 0,
+      "time-taken": -1    
+    },
+    {
+      "query-name": "test-query Condition testdata 100000",
+      "query": "Observation?code=55782-7",
+      "number-found": 0,
+      "time-taken": -1    
+    },
+    {
+      "query-name": "test-query Condition testdata 1000000",
+      "query": "Observation?code=55782-7",
+      "number-found": 0,
+      "time-taken": -1    
+    }
+  ]
+}

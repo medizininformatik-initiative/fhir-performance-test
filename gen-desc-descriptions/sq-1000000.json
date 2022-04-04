@@ -1,0 +1,85 @@
+{
+  "name": "sq-100000",
+  "numberToGenerate": 100000,
+  "idOffsets": {
+    "Patient": 11000,
+    "Encounter": 11000,
+    "Condition": 11000,
+    "Procedure": 11000,
+    "Observation": 11000
+  },
+  "Bundle": [
+    {
+      "blueprint": "Patient",
+      "genDesc": {
+        "$.gender": {
+          "function": "genEnum",
+          "params": {
+            "options": [
+              "female"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "blueprint": "Encounter",
+      "genDesc": {
+        "$.status": "finished"
+      }
+    },
+    {
+      "blueprint": "Condition",
+      "genDesc": {
+        "$.recordedDate": {
+          "function": "genDate",
+          "params": {
+            "start": "2018-01-01T09:45:00+01:00",
+            "end": "2020-09-01T09:45:00+01:00"
+          }
+        },
+        "$.onsetDateTime": {
+          "function": "valueFromEntry",
+          "params": {
+            "path": "$.recordedDate"
+          }
+        },
+        "$.code.coding[0].code": "C50.4"
+      }
+    },
+    {
+      "blueprint": "Procedure",
+      "genDesc": {
+        "$.performedDateTime": {
+          "function": "genDate",
+          "params": {
+            "start": "2018-01-01T09:45:00+01:00",
+            "end": "2020-09-01T09:45:00+01:00"
+          }
+        },
+        "$.code.coding[0].code": "5-787.en"
+      }
+    },
+    {
+      "blueprint": "Observation",
+      "genDesc": {
+        "$.code.coding[0].code": "30351-1",
+        "$.valueQuantity.value": {
+          "function": "genNumber",
+          "params": {
+            "min": 10,
+            "max": 15,
+            "precision": 4
+          }
+        },
+        "$.effectiveDateTime": {
+          "function": "genDate",
+          "params": {
+            "start": "2018-01-01T09:45:00+01:00",
+            "end": "2020-09-01T09:45:00+01:00"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+This is a folder where one can put the testdata in ndjson format to be uploaded for the performance test
