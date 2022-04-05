@@ -1,28 +1,68 @@
 {
   "test-queries":[
     {
+      "query-name": "test-query Patient testdata 1000",
+      "query": "Patient?gender=other"
+    },
+    {
+      "query-name": "test-query Patient testdata 10000",
+      "query": "Patient?gender=unknown"
+    },
+    {
+      "query-name": "test-query Patient testdata 100000",
+      "query": "Patient?gender=male"
+    },
+    {
+      "query-name": "test-query Patient testdata 1000000",
+      "query": "Patient?gender=female" 
+    },
+    {
       "query-name": "test-query Condition testdata 1000",
-      "query": "Observation?code=55782-7",
-      "number-found": 0,
-      "time-taken": -1    
+      "query": "Condition?code=http://fhir.de/CodeSystem/bfarm/icd-10-gm|C50.1"
     },
     {
       "query-name": "test-query Condition testdata 10000",
-      "query": "Observation?code=55782-7",
-      "number-found": 0,
-      "time-taken": -1    
+      "query": "Condition?code=http://fhir.de/CodeSystem/bfarm/icd-10-gm|C50.2"
     },
     {
       "query-name": "test-query Condition testdata 100000",
-      "query": "Observation?code=55782-7",
-      "number-found": 0,
-      "time-taken": -1    
+      "query": "Condition?code=http://fhir.de/CodeSystem/bfarm/icd-10-gm|C50.3"
     },
     {
       "query-name": "test-query Condition testdata 1000000",
-      "query": "Observation?code=55782-7",
-      "number-found": 0,
-      "time-taken": -1    
+      "query": "Condition?code=http://fhir.de/CodeSystem/bfarm/icd-10-gm|C50.4" 
+    },
+    {
+      "query-name": "test-query Procedure testdata 1000",
+      "query": "Procedure?code=http://fhir.de/CodeSystem/bfarm/ops|5-787.ex"   
+    },
+    {
+      "query-name": "test-query Procedure testdata 10000",
+      "query": "Procedure?code=http://fhir.de/CodeSystem/bfarm/ops|5-787.es"   
+    },
+    {
+      "query-name": "test-query Procedure testdata 100000",
+      "query": "Procedure?code=http://fhir.de/CodeSystem/bfarm/ops|5-787.eu"
+    },
+    {
+      "query-name": "test-query Procedure testdata 1000000",
+      "query": "Procedure?code=http://fhir.de/CodeSystem/bfarm/ops|5-787.en"  
+    },
+    {
+      "query-name": "test-query Observation testdata 1000",
+      "query": "Observation?code=http://loinc.org|55782-7&value-quantity=gt0|http://unitsofmeasure.org|g/dL"   
+    },
+    {
+      "query-name": "test-query Observation testdata 10000",
+      "query": "Observation?code=http://loinc.org|20509-6&value-quantity=gt0|http://unitsofmeasure.org|g/dL"   
+    },
+    {
+      "query-name": "test-query Observation testdata 100000",
+      "query": "Observation?code=http://loinc.org|30352-9&value-quantity=gt0|http://unitsofmeasure.org|g/dL"
+    },
+    {
+      "query-name": "test-query Observation testdata 1000000",
+      "query": "Observation?code=http://loinc.org|30351-1&value-quantity=gt0|http://unitsofmeasure.org|g/dL"  
     }
   ]
 }

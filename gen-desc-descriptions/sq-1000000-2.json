@@ -1,12 +1,12 @@
 {
-  "name": "sq-100000",
+  "name": "sq-1000000-2",
   "numberToGenerate": 100000,
   "idOffsets": {
-    "Patient": 11000,
-    "Encounter": 11000,
-    "Condition": 11000,
-    "Procedure": 11000,
-    "Observation": 11000
+    "Patient": 211000,
+    "Encounter": 211000,
+    "Condition": 211000,
+    "Procedure": 211000,
+    "Observation": 211000
   },
   "Bundle": [
     {
