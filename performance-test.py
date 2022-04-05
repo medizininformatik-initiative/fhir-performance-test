@@ -2,7 +2,7 @@ import os
 import requests
 import time
 import json
-import base64
+from requests.auth import HTTPBasicAuth
 from threading import Thread
 
 FHIR_BASE_URL = os.getenv('FHIR_BASE_URL', 'http://localhost:8082/fhir')
@@ -27,7 +27,7 @@ def page_through_results_and_collect(resp):
         result_list = list(map(lambda entry: {"patient": entry['resource']['subject']['reference'].split('/')[1]}, resp.json()['entry']))
 
     while next_link:
-        resp = requests.get(next_link)
+        resp = requests.get(next_link, auth=HTTPBasicAuth(FHIR_USER, FHIR_PW))
         if resp.json()['entry'][0]['resource']['resourceType'] == 'Patient':
             result_list_temp = list(map(lambda entry: {"patient": entry['resource']['id']}, resp.json()['entry']))
         else:
@@ -41,7 +41,7 @@ def page_through_results_and_collect(resp):
 def exec_perf_test(test):
     start = time.time()
     query = f'{FHIR_BASE_URL}/{test["query"]}&_count=500'
-    resp = requests.get(query)
+    resp = requests.get(query, auth=HTTPBasicAuth(FHIR_USER, FHIR_PW))
     result_list = page_through_results_and_collect(resp)
     end = time.time()
     test['time-taken'] = end - start
