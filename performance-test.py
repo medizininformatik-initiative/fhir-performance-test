@@ -20,7 +20,8 @@ def page_through_results_and_collect(resp):
 
     result_list = []
     next_link = get_next_link(resp.json()['link'])
-
+    if 'entry' not in  resp.json().keys():
+        return result_list
     if len(resp.json()['entry']) > 0 and resp.json()['entry'][0]['resource']['resourceType'] == 'Patient':
         result_list = list(map(lambda entry: {"patient": entry['resource']['id']}, resp.json()['entry']))
     else:
@@ -28,6 +29,8 @@ def page_through_results_and_collect(resp):
 
     while next_link:
         resp = requests.get(next_link, auth=HTTPBasicAuth(FHIR_USER, FHIR_PW))
+        if 'entry' not in  resp.json().keys():
+            return result_list
         if resp.json()['entry'][0]['resource']['resourceType'] == 'Patient':
             result_list_temp = list(map(lambda entry: {"patient": entry['resource']['id']}, resp.json()['entry']))
         else:
@@ -37,6 +40,10 @@ def page_through_results_and_collect(resp):
 
     return result_list
 
+def get_summary_count(test):
+    query =  f'{FHIR_BASE_URL}/{test["query"]}&_summary=count'
+    resp = requests.get(query, auth=HTTPBasicAuth(FHIR_USER, FHIR_PW))
+    return resp.json()['total']
 
 def exec_perf_test(test):
     start = time.time()
@@ -44,8 +51,12 @@ def exec_perf_test(test):
     resp = requests.get(query, auth=HTTPBasicAuth(FHIR_USER, FHIR_PW))
     result_list = page_through_results_and_collect(resp)
     end = time.time()
+
+    summary_count = get_summary_count(test)
     test['time-taken'] = end - start
     test['resources-found'] = len(result_list)
+    test['resource-count-summary'] = summary_count
+    test['paged-all-resources'] = test['resources-found'] == summary_count
     return test
 
 
